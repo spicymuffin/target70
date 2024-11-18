@@ -9,15 +9,15 @@ string
 ...
 ...
 touch3 address
-movq rax, rdi (setval_392) -> (0x401a55 + 0x2 = 0x401a57)
+movq %rax, %rdi (setval_392) -> (0x401a55 + 0x2 = 0x401a57)
 lea (%rdi,%rsi,1), %rax (add_xy) -> (0x401a75 + 0x0 = 0x401a75)
-movq rax rdi (setval_392) -> (0x401a55 + 0x2 = 0x401a57)
-movq rsp rax (addval_366) -> (0x401a9b + 0x2 = 0x401a9d)
-movl edx esi (setval_137) -> (0x401b0e + 0x3 = 0x401b11)
-movl ecx edx (setval_181) -> (0x401af3 + 0x2 = 0x401af5)
-movl eax ecx (addval_494) -> (0x401b07 + 0x2 = 0x401b09)
+movq %rax, %rdi (setval_392) -> (0x401a55 + 0x2 = 0x401a57)
+movq %rsp, %rax (addval_366) -> (0x401a9b + 0x2 = 0x401a9d)
+movl %edx, %esi (setval_137) -> (0x401b0e + 0x3 = 0x401b11)
+movl %ecx, %edx (setval_181) -> (0x401af3 + 0x2 = 0x401af5)
+movl %eax, %ecx (addval_494) -> (0x401b07 + 0x2 = 0x401b09)
 offset
-popq rax (addval_451) -> (0x401a41 + 0x4 = 0x401a45)
+popq %rax (addval_451) -> (0x401a41 + 0x4 = 0x401a45)
 
 
 so stack should have:
